@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script type="text/javascript" async="" src="./example_files/analytics.js"></script><script async="" src="./example_files/js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-80107903-1');
+  </script>
+  <title>Examples for Piano Performance Audio Synthesis</title>
+  <link href="./example_files/css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: auto;
+      padding: 5%;
+      max-width: 1000px;
+    }
+    td img {
+      width: 100%;
+    }
+    table {
+      max-width: 80%;
+    }
+    h1 {
+      font-size: 35px;
+    }
+    h2 {
+      font-size: 25px;
+      font-weight: normal;
+    }
+    p {
+      font-size: 16px;
+    }
+    .audio-table td {
+      vertical-align: top;
+    }
+  </style>
+</head>
+<body>
+
+<div style="max-width: 80%; margin-right: auto; margin-left:auto;">
+  <h1 style="text-align:center; font-size: 36px;">Generative Modelling for Controllable Piano Performance Audio Synthesis</h1>
+  <h2 style="text-align:center; font-size: 30px;">Audio Examples</h2>
+</div>
+
+<!-- <h1>Related Material</h1>
+<div style="font-size: 20px">
+  <a href="https://goo.gl/magenta/music-transformer-autoencoder-paper">Main Paper on arXiv</a>
+</div> -->
+
+  
+
+<p>This page contains a set of audio samples in support of the paper. All pieces used here are unseen during training. </p>
+<p>In our work, we generate realistic piano performance in audio domain that closely follows temporal conditioning of the two essential style features 
+  for piano performances: <b>articulation</b> (<italic>legato</italic> or detached), and <b>dynamics</b> 
+  (loud or soft). Below we demonstrate the model’s applicability of fine-grained style morphing over the course of synthesized audio,  
+  which can be based on conditions sampled from the prior (Part 1), or inferred from other pieces (Part 2). </p>
+<p>One of the envisioned use cases is to inspire creative and brand new interpretations for existing pieces of piano music.</p>
+
+<h1>Contents</h1>
+<div style="font-size: 20px">
+  <a href="#gradual_style_morphing">Gradual Style Morphing</a><br>
+  <a href="#performance_style_transfer">Performance Style Transfer</a><br>
+  <!-- <a href="#miscellaneous">Miscellaneous</a><br> -->
+</div>
+
+<!-- ========================= PART 1 ========================= -->
+<a name="gradual_style_morphing"><h2>Part 1: Gradual Style Morphing</h2></a>
+
+<!-- ========================= Example 1 ========================= -->
+<table align="center" style="text-align: center; width: 100%;" class="audio-table">
+  <colgroup>
+    <col span="1" style="width: 5%;">
+    <col span="1" style="width: 90%;">
+    <col span="1" style="width: 5%;">
+  </colgroup>
+  <tbody><tr>
+    <td><b>Example 1 - Original</b></td>
+    <td><b>Generated Mel-Spectrogram</b></td>
+    <td><b>Audio Result</b></td>
+  </tr>
+  <tr>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/test-87/test-87-original.wav"></td>
+    <td><img style="width: 610px;" src="assets/morph/test-87/test-87-1-80.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/test-87/test-87-1-denoised.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>staccato soft -> legato loud</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/morph/test-87/test-87-2-80.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/test-87/test-87-2-denoised.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>staccato loud -> legato soft</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/morph/test-87/test-87-3-80.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/test-87/test-87-3-denoised.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>legato soft -> staccato loud</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/morph/test-87/test-87-4-80.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/test-87/test-87-4-denoised.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>legato loud -> staccato soft</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+</tbody></table>
+
+<!-- ========================= Example 2 ========================= -->
+<table align="center" style="text-align: center; width: 100%;" class="audio-table">
+  <colgroup>
+    <col span="1" style="width: 5%;">
+    <col span="1" style="width: 90%;">
+    <col span="1" style="width: 5%;">
+  </colgroup>
+  <tbody><tr>
+    <td><b>Example 2 - Original</b></td>
+    <td><b>Generated Mel-Spectrogram</b></td>
+    <td><b>Audio Result</b></td>
+  </tr>
+  <tr>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/test-64/test-64-original.wav"></td>
+    <td><img style="width: 610px;" src="assets/morph/test-64/test-64-1.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/test-64/test-64-1-denoised.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>staccato soft -> legato loud</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/morph/test-64/test-64-2.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/test-64/test-64-2-denoised.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>staccato loud -> legato soft</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/morph/test-64/test-64-3.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/test-64/test-64-3-denoised.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>legato soft -> staccato loud</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/morph/test-64/test-64-4.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/test-64/test-64-4-denoised.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>legato loud -> staccato soft</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+</tbody></table>
+
+
+<!-- ========================= Example 3 ========================= -->
+<table align="center" style="text-align: center; width: 100%;" class="audio-table">
+  <colgroup>
+    <col span="1" style="width: 5%;">
+    <col span="1" style="width: 90%;">
+    <col span="1" style="width: 5%;">
+  </colgroup>
+  <tbody><tr>
+    <td><b>Example 3 - Original</b></td>
+    <td><b>Generated Mel-Spectrogram</b></td>
+    <td><b>Audio Result</b></td>
+  </tr>
+  <tr>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/test-72/test-72-original.wav"></td>
+    <td><img style="width: 610px;" src="assets/morph/test-72/test-72-1.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/test-72/test-72-1-denoised.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>staccato soft -> legato loud</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/morph/test-72/test-72-2.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/test-72/test-72-2-denoised.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>staccato loud -> legato soft</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/morph/test-72/test-72-3.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/test-72/test-72-3-denoised.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>legato soft -> staccato loud</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/morph/test-72/test-72-4.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/test-72/test-72-4-denoised.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>legato loud -> staccato soft</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+</tbody></table>
+
+<!-- <table align="center" style="text-align: center; width: 100%;" class="audio-table">
+  <colgroup>
+    <col span="1" style="width: 5%;">
+    <col span="1" style="width: 90%;">
+    <col span="1" style="width: 5%;">
+  </colgroup>
+  <tbody><tr>
+    <td><b>Example 1 - Original</b></td>
+    <td><b>Generated Mel-Spectrogram</b></td>
+    <td><b>Audio Result</b></td>
+  </tr>
+  <tr>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/gradual_morph_test2_original.wav"></td>
+    <td><img style="width: 610px;" src="assets/morph/gradual_morph_test2_1.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/gradual_morph_test2_1.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>staccato soft -> legato loud</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/morph/gradual_morph_test2_2.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/gradual_morph_test2_2.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>staccato loud -> legato soft</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/morph/gradual_morph_test2_3.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/gradual_morph_test2_3.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>legato soft -> staccato loud</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/morph/gradual_morph_test2_4.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/gradual_morph_test2_4.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>legato loud -> staccato soft</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+</tbody></table>
+
+<!-- ========================= Example 2 ========================= -->
+<!-- <table align="center" style="text-align: center; width: 100%;" class="audio-table">
+  <colgroup>
+    <col span="1" style="width: 5%;">
+    <col span="1" style="width: 90%;">
+    <col span="1" style="width: 5%;">
+  </colgroup>
+  <tbody><tr>
+    <td><b>Example 2 - Original</b></td>
+    <td><b>Generated Mel-Spectrogram</b></td>
+    <td><b>Audio Result</b></td>
+  </tr>
+  <tr>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/gradual_morph_test3_original.wav"></td>
+    <td><img style="width: 610px;" src="assets/morph/gradual_morph_test3_1.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/gradual_morph_test3_1.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>staccato soft -> legato loud</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/morph/gradual_morph_test3_2.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/gradual_morph_test3_2.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>staccato loud -> legato soft</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/morph/gradual_morph_test3_3.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/gradual_morph_test3_3.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>legato soft -> staccato loud</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/morph/gradual_morph_test3_4.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/gradual_morph_test3_4.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>legato loud -> staccato soft</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+</tbody></table> -->
+<!-- <table align="center" style="text-align: center; width: 100%;" class="audio-table">
+  <colgroup>
+    <col span="1" style="width: 5%;">
+    <col span="1" style="width: 90%;">
+    <col span="1" style="width: 5%;">
+  </colgroup>
+  <tbody><tr>
+    <td><b>Example 3 - Original</b></td>
+    <td><b>Generated Mel-Spectrogram</b></td>
+    <td><b>Audio Result</b></td>
+  </tr>
+  <tr>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/gradual_morph_test4_original.wav"></td>
+    <td><img style="width: 610px;" src="assets/morph/gradual_morph_test4_1.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/gradual_morph_test4_1.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>staccato soft -> legato loud</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/morph/gradual_morph_test4_2.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/gradual_morph_test4_2.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>staccato loud -> legato soft</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/morph/gradual_morph_test4_3.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/gradual_morph_test4_3.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>legato soft -> staccato loud</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/morph/gradual_morph_test4_4_new.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="assets/morph/gradual_morph_test4_4.wav"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>legato loud -> staccato soft</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+</tbody></table> -->
+
+<!-- ========================= PART 2 ========================= -->
+<a name="performance_style_transfer"><h2>Part 2: Performance Style Transfer</h2></a>
+
+<table align="center" style="text-align: center; width: 100%;" class="audio-table-3">
+  <colgroup>
+    <col style="width: 100%;">
+    <col style="width: 0%;">
+    <col style="width: 0%;">
+ </colgroup>
+
+  <tbody><tr>
+    <td><b>Example 1</b></td>
+    <td><b>Mel-Spectrogram / Piano Roll</b></td>
+    <td><b>Audio</b></td>
+  </tr>
+  <tr>
+      <td>Content Piece</td>
+      <td><img style="width: 610px;" src="assets/transfer/test_content_3_new.png"></td>
+      <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_content_3.wav"> </audio></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/transfer/test_content_3_pr.png"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Style Piece</td>
+    <td><img style="width: 610px;" src="assets/transfer/test_style_3_new.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_style_3.wav"> </audio></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/transfer/test_style_3_pr.png"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Result</td>
+    <td><img style="width: 610px;" src="assets/transfer/test_output_3_new.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_output_3.wav"> </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/transfer/test_output_3_pr.png"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Amplitude Correlation</td>
+    <td><img style="width: 610px;" src="assets/transfer/test_amplitude_3.png"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+</tbody></table>
+
+<table align="center" style="text-align: center; width: 100%;" class="audio-table-3">
+  <colgroup>
+    <col style="width: 100%;">
+    <col style="width: 0%;">
+    <col style="width: 0%;">
+ </colgroup>
+
+  <tbody><tr>
+    <td><b>Example 2</b></td>
+    <td><b>Mel-Spectrogram / Piano Roll</b></td>
+    <td><b>Audio</b></td>
+  </tr>
+  <tr>
+      <td>Content Piece</td>
+      <td><img style="width: 610px;" src="assets/transfer/test_content_1_new.png"></td>
+      <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_content.wav"> </audio></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/transfer/test_content_1_pr.png"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Style Piece</td>
+    <td><img style="width: 610px;" src="assets/transfer/test_style_1_new.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_style.wav"> </audio></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/transfer/test_style_1_pr.png"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Result</td>
+    <td><img style="width: 610px;" src="assets/transfer/test_output_1_new.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_output.wav"> </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/transfer/test_output_1_pr.png"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Amplitude Correlation</td>
+    <td><img style="width: 610px;" src="assets/transfer/test_amplitude_1.png"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+</tbody></table>
+
+<table align="center" style="text-align: center; width: 100%;" class="audio-table-3">
+  <colgroup>
+    <col style="width: 100%;">
+    <col style="width: 0%;">
+    <col style="width: 0%;">
+ </colgroup>
+
+  <tbody><tr>
+    <td><b>Example 3</b></td>
+    <td><b>Mel-Spectrogram / Piano Roll</b></td>
+    <td><b>Audio</b></td>
+  </tr>
+  <tr>
+      <td>Content Piece</td>
+      <td><img style="width: 610px;" src="assets/transfer/test_content_5_new.png"></td>
+      <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_content_5.wav"> </audio></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/transfer/test_content_5_pr.png"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Style Piece</td>
+    <td><img style="width: 610px;" src="assets/transfer/test_style_5_new.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_style_5.wav"> </audio></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/transfer/test_style_5_pr.png"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Result</td>
+    <td><img style="width: 610px;" src="assets/transfer/test_output_5_new.png"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_output_5.wav"> </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><img style="width: 610px;" src="assets/transfer/test_output_5_pr.png"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Amplitude Correlation</td>
+    <td><img style="width: 610px;" src="assets/transfer/test_amplitude_5.png"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>&nbsp</td>
+    <td></td>
+  </tr>
+</tbody></table>
+
+<!-- ========================= MISCELLANEOUS ========================= -->
+
+<!-- <a name="miscellaneous"><h2>Miscellaneous</h2></a>
+<p>We demonstrate several examples in different articulation and dynamics.</p>
+
+<table align="center" style="text-align: center;" class="audio-table">
+  <tbody><tr>
+    <td><b>Original</b></td>
+    <td><b>Soft, Detached</b></td>
+    <td><b>Loud, Detached</b></td>
+    <td><b>Soft, Legato</b></td>
+    <td><b>Loud, Legato</b></td>
+  </tr>
+  <tr>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_48_2_original.wav"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_48_2_staccato_soft.wav"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_48_2_staccato_loud.wav"> </audio></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_48_2_legato_soft.wav"> </audio></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_48_2_legato_loud.wav"> </audio></td>
+  </tr>
+  <tr>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_60_original.wav"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_60_staccato_soft.wav"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_60_staccato_loud.wav"> </audio></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_60_legato_soft.wav"> </audio></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_60_legato_loud.wav"> </audio></td>
+  </tr>
+  <tr>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_69_original.wav"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_69_staccato_soft.wav"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_69_staccato_loud.wav"> </audio></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_69_legato_soft.wav"> </audio></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_69_legato_loud.wav"> </audio></td>
+  </tr>
+  <tr>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_80_original.wav"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_80_staccato_soft.wav"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_80_staccato_loud.wav"> </audio></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_80_legato_soft.wav"> </audio></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_80_legato_loud.wav"> </audio></td>
+  </tr>
+  <tr>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_36_original.wav"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_36_staccato_soft.wav"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_36_staccato_loud.wav"> </audio></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_36_legato_soft.wav"> </audio></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_36_legato_loud.wav"> </audio></td>
+  </tr>
+  <tr>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_68_original.wav"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_68_staccato_soft.wav"></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_68_staccato_loud.wav"> </audio></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_68_legato_soft.wav"> </audio></td>
+    <td><audio controls="" style="width: 200px;"> <source src="cleaned-wav/test_68_legato_loud.wav"> </audio></td>
+  </tr>
+</tbody></table> -->
+</body></html>
